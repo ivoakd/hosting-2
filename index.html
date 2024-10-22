@@ -6,23 +6,27 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: left-side;
-            margin-top: 0px;
-			background-color: black; /* Fondo negro */
+            text-align: left; /* Alineación a la izquierda */
+            margin: 0; /* Sin márgenes */
+            background-color: black; /* Fondo negro */
             color: white; /* Texto en blanco */
-			width: 360px; /* Ancho fijo */
+            width: 360px; /* Ancho fijo */
             height: 120px; /* Alto fijo */
-            margin: 0;
+            display: flex; /* Flexbox para el diseño */
+            align-items: flex-start; /* Alineación en la parte superior */
         }
         #countdown {
-            font-size: 4em;
-            margin: 0px;
+            font-size: 3.5em;
+            margin: 0px 0 0 0; /* Margen superior */
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo negro con 70% de transparencia */
+            padding: 10px; /* Espaciado interno */
+            border-radius: 10px; /* Bordes redondeados */
         }
     </style>
 </head>
 <body>
     <div id="countdown"></div>
-<script>
+    <script>
         // Fecha objetivo
         const countDownDate = new Date("November 30, 2024 00:00:00").getTime();
 
@@ -37,9 +41,15 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+            // Formatear días, horas, minutos y segundos con dos dígitos
+            const formattedDays = String(days).padStart(2, '0');
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+
             // Mostrar el resultado en el elemento con id "countdown"
             document.getElementById("countdown").innerHTML = 
-                days + "  " + hours + ":" + minutes + ":" + seconds ;
+                `${formattedDays} ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 
             // Si el contador ha terminado
             if (distance < 0) {
@@ -47,6 +57,10 @@
                 document.getElementById("countdown").innerHTML = "¡ES HOY!";
             }
         }, 1000);
+    </script>
+</body>
+</html>
+
     </script>
 </body>
 </html>
